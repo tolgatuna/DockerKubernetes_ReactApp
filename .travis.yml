@@ -8,3 +8,18 @@ before_install:
 script:
   - docker run -e CI=true tolgatuna/05-frontend-dev npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "DockerKubernetes-05FrontendProject"
+  env: "Dockerkubernetes05frontendproject-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-111747667804"
+  bucket_path: "DockerKubernetes-05FrontendProject"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
+
+
